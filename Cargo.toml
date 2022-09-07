@@ -35,6 +35,11 @@ wildmatch = "2"
 default-features = false
 features = ["compress", "json", "tls-rustls"]
 version = "0.22"
+optional = true
+
+[features]
+update = ["attohttpc"]
+default = ["update"]
 
 [profile.release]
 codegen-units = 1

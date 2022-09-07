@@ -63,6 +63,7 @@ fn main() -> Result<()> {
         Kubie::EditConfig => {
             cmd::edit::edit_config()?;
         }
+        #[cfg(feature = "update")]
         Kubie::Update => {
             cmd::update::update()?;
         }
