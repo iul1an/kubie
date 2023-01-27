@@ -1,5 +1,3 @@
-use std::fs::File;
-
 use anyhow::{Context, Result};
 
 use crate::cmd::{select_or_list_context, SelectResult};
@@ -48,8 +46,7 @@ fn enter_context(
 
     if vars::is_kubie_active() && !recursive {
         let path = kubeconfig::get_kubeconfig_path()?;
-        let file = File::create(&path).context("could not write in temporary KUBECONFIG file")?;
-        kubeconfig.write_to(file)?;
+        kubeconfig.write_to_file(path.as_path())?;
         session.save(None)?;
     } else {
         spawn_shell(settings, kubeconfig, &session)?;
